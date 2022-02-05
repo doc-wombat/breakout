@@ -23,10 +23,10 @@ public class Ball {
     public void update() {
         x += xSpeed;
         y += ySpeed;
-        if (x < 20 || x > (Gdx.graphics.getWidth() - 20)) {
+        if (x < this.size|| x > (Gdx.graphics.getWidth() - this.size)) {
             xSpeed = -xSpeed;
         }
-        if (y < 20 || y > (Gdx.graphics.getHeight() - 20)) {
+        if (y < this.size || y > (Gdx.graphics.getHeight() - this.size)) {
             ySpeed = -ySpeed;
         }
         ballColor = Color.WHITE;
