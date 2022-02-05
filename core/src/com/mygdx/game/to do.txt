@@ -1,0 +1,18 @@
+to do:
+
+main class:
+-add colors to blocks
+-add score counter/hi score counter
+-add menu
+
+ball:
+- add kill on hitting bottom of screen
+
+block:
+- fix collision
+
+paddle:
+- add variable angles
+
+
+
