@@ -35,6 +35,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		paddle.update();
 		paddle.draw(shape);
 		ball.draw(shape);
+		shape.end();
+		shape.begin(ShapeRenderer.ShapeType.Filled);
 		blocks.forEach(block -> block.draw(shape));
 		for (Block b : blocks) {
 			b.draw(shape);
@@ -47,7 +49,7 @@ public class MyGdxGame extends ApplicationAdapter {
 				i--;
 			}
 		}
-		ball.checkCollision(paddle, ball);
 		shape.end();
+		ball.checkCollision(paddle, ball);
 	}
 }

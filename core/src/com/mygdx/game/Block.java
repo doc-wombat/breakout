@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.Color;
 
 public class Block
 {
@@ -15,7 +16,25 @@ public class Block
         this.height = height;
     }
 
+    //Gets the color of the block based on y location
+    public Color getColor() {
+        if (this.y < 390) {
+            return Color.GREEN;
+        }
+        else if (this.y < 420) {
+            return Color.YELLOW;
+        }
+        else if (this.y < 450) {
+            return Color.ORANGE;
+        }
+        else if (this.y < 480) {
+            return Color.RED;
+        }
+        return Color.PURPLE;
+}
+
     public void draw(ShapeRenderer shape){
+        shape.setColor(getColor());
         shape.rect(x, y, length, height);
     }
 

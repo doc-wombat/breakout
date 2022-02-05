@@ -10,7 +10,7 @@ public class Ball {
     int size;
     int xSpeed;
     int ySpeed;
-    Color color = Color.WHITE;
+    Color ballColor = Color.WHITE;
 
     public Ball(int x, int y, int size, int xSpeed, int ySpeed) {
         this.x = x;
@@ -29,11 +29,12 @@ public class Ball {
         if (y < 20 || y > (Gdx.graphics.getHeight() - 20)) {
             ySpeed = -ySpeed;
         }
+        ballColor = Color.WHITE;
     }
 
     public void draw(ShapeRenderer shape) {
         shape.circle(x, y, size);
-        shape.setColor(color);
+        shape.setColor(ballColor);
     }
 
     public void checkCollision(Paddle paddle, Ball ball) {
