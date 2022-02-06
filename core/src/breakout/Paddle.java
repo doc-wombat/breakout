@@ -10,6 +10,7 @@ public class Paddle
     int y;
     int length;
     int height;
+    int mouseXPos = Gdx.input.getX();
 
     public Paddle(int x, int y, int l, int h)
     {
@@ -21,9 +22,10 @@ public class Paddle
 
     public void update()
     {
-        if (Gdx.input.isTouched())
+        if (Gdx.input.getX() != mouseXPos)
         {
             x = Gdx.input.getX();
+            mouseXPos = Gdx.input.getX();
             if (x < 0)
             {
                 x = 0;

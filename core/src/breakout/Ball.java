@@ -47,7 +47,14 @@ public class Ball {
 
     public void checkCollision(Paddle paddle, Ball ball) {
         if(collidesWith(paddle, ball)){
-            ball.ySpeed = -ball.ySpeed;
+            if (Math.abs((paddle.x + (paddle.length / 2))- ball.x) < 25)
+            {
+                ball.ySpeed = 5;
+            }
+            else
+            {
+                ball.ySpeed = 3;
+            }
         }
     }
 
