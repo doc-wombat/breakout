@@ -31,10 +31,14 @@
 - *add motion to drake gif*
 
 
+
+## other:
 - make executable
 - change window icon
 
 
 **Bold: Highest priority**
+
 Normal: Mid priority
+
 *Italics: Low priority*
