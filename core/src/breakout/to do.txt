@@ -25,4 +25,4 @@ sfx:
 - bgm
 
 
-
+- make executable

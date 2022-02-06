@@ -29,7 +29,6 @@ public class GameScreen extends ScreenAdapter {
         for (int y = 3 * Gdx.graphics.getHeight()/4; y < Gdx.graphics.getHeight(); y += blockHeight + 10) {
             for (int x = 0; x < Gdx.graphics.getWidth(); x += blockWidth + 10) {
                 blocks.add(new Block(x, y, blockWidth, blockHeight));
-                System.out.println(Gdx.graphics.getHeight());
             }
         }
     }
