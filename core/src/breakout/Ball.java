@@ -1,8 +1,10 @@
-package com.mygdx.game;
+package breakout;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.Color;
+
+import java.util.ArrayList;
 
 public class Ball {
     int x;
@@ -10,6 +12,7 @@ public class Ball {
     int size;
     int xSpeed;
     int ySpeed;
+    boolean alive = true;
 
     public Ball(int x, int y, int size, int xSpeed, int ySpeed) {
         this.x = x;
@@ -19,14 +22,21 @@ public class Ball {
         this.ySpeed = ySpeed;
     }
 
-    public void update() {
+    public void update(ArrayList<Block> blocks) {
         x += xSpeed;
-        y += ySpeed;
         if (x < this.size|| x > (Gdx.graphics.getWidth() - this.size)) {
             xSpeed = -xSpeed;
         }
-        if (y < this.size || y > (Gdx.graphics.getHeight() - this.size)) {
+        blocks.forEach(b -> b.checkCollisionX(this));
+
+        y += ySpeed;
+        if (y > (Gdx.graphics.getHeight() - this.size)) {
             ySpeed = -ySpeed;
+        }
+        blocks.forEach(b -> b.checkCollisionY(this));
+        if (y < this.size)
+        {
+            alive = false;
         }
     }
 
@@ -58,5 +68,9 @@ public class Ball {
                 (yDistance - paddle.height/2)^2;
 
         return (cornerDistance_sq <= (ball.size^2));
+    }
+
+    public boolean dead() {
+        return !alive;
     }
 }

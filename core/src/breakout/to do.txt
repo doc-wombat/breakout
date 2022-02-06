@@ -1,0 +1,28 @@
+to do:
+
+main class:
+- add colors to blocks ✔
+- add score counter/hi score counter
+- add menu
+- win screen
+- death screen ✔
+
+ball:
+- add kill on hitting bottom of screen ✔
+
+block:
+- fix collision ✔
+
+paddle:
+- add variable angles
+- prevent moving offscreen on right side
+
+sfx:
+- block sounds
+- paddle sounds
+- death sound
+- win sound
+- bgm
+
+
+
