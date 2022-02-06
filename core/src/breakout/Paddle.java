@@ -24,14 +24,38 @@ public class Paddle
         if (Gdx.input.isTouched())
         {
             x = Gdx.input.getX();
+            if (x < 0)
+            {
+                x = 0;
+            }
+            if (x+100 > Gdx.graphics.getWidth())
+            {
+                x = Gdx.graphics.getWidth() - 100;
+            }
         }
         if (Gdx.input.isKeyPressed(21))
         {
             x += -8;
+            if (x < 0)
+            {
+                x = 0;
+            }
+            if (x+100 > Gdx.graphics.getWidth())
+            {
+                x = Gdx.graphics.getWidth() - 100;
+            }
         }
         if (Gdx.input.isKeyPressed(22))
         {
             x += 8;
+            if (x < 0)
+            {
+                x = 0;
+            }
+            if (x+100 > Gdx.graphics.getWidth())
+            {
+                x = Gdx.graphics.getWidth() - 100;
+            }
         }
         // y = 480 - Gdx.input.getY(); sets y value to mouse y
     }
