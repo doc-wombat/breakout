@@ -21,7 +21,18 @@ public class Paddle
 
     public void update()
     {
-        x = Gdx.input.getX();
+        if (Gdx.input.isTouched())
+        {
+            x = Gdx.input.getX();
+        }
+        if (Gdx.input.isKeyPressed(21))
+        {
+            x += -8;
+        }
+        if (Gdx.input.isKeyPressed(22))
+        {
+            x += 8;
+        }
         // y = 480 - Gdx.input.getY(); sets y value to mouse y
     }
 
