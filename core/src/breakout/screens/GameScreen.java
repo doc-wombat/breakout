@@ -43,6 +43,11 @@ public class GameScreen extends ScreenAdapter {
             shape.end();
             return;
         }
+        if (blocks.size() == 0) {
+            game.won();
+            shape.end();
+            return;
+        }
         paddle.update();
         paddle.draw(shape);
         ball.draw(shape);

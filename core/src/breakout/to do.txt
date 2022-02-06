@@ -4,7 +4,7 @@ main class:
 - add colors to blocks ✔
 - add score counter/hi score counter
 - add menu
-- win screen
+- win screen ✔
 - death screen ✔
 
 ball:
@@ -16,6 +16,7 @@ block:
 paddle:
 - add variable angles
 - prevent moving offscreen on right side
+- keyboard input
 
 sfx:
 - block sounds
@@ -23,6 +24,10 @@ sfx:
 - death sound
 - win sound
 - bgm
+
+graphics:
+- variable block colors
+- variable paddle sprites
 
 
 - make executable
