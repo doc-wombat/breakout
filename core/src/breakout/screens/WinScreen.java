@@ -36,11 +36,11 @@ public class WinScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(Color.BLACK);
         batch.begin();
         batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(restartTexture, restartButton.x, restartButton.y);
         if (buttonPressed(restartButton)) {
-            ScreenUtils.clear(Color.BLACK);
             game.gameRestarted();
         }
         batch.end();

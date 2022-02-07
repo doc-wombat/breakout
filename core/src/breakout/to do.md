@@ -40,7 +40,7 @@
 - add the restart buttons to win and end screen ✔
 
 ## bugs:
-- flickering on return to menu screen
+- flickering on return to menu screen ✔
 
 
 **Bold: Highest priority**
