@@ -6,6 +6,8 @@
 - add a menu ✔
 - win screen ✔
 - death screen ✔
+- pause ✔
+- pause screen
 
 ## ball: ✔
 - add a kill on hitting bottom of screen ✔
