@@ -1,9 +1,6 @@
 package breakout.screens;
 
-import breakout.Ball;
-import breakout.Block;
-import breakout.Breakout;
-import breakout.Paddle;
+import breakout.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
