@@ -37,7 +37,10 @@
 ## other:
 - make executable
 - change window icon
-- add restart buttons to win and end screen
+- add the restart buttons to win and end screen ✔
+
+## bugs:
+- flickering on return to menu screen
 
 
 **Bold: Highest priority**

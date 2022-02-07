@@ -40,6 +40,15 @@ public class Ball {
         }
     }
 
+    public void reset()
+    {
+        this.x = 150;
+        this.y = 200;
+        this.xSpeed = 5;
+        this.ySpeed = 5;
+        alive = true;
+    }
+
     public void draw(ShapeRenderer shape) {
         shape.setColor(Color.WHITE);
         shape.circle(x, y, size);

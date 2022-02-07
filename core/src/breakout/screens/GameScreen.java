@@ -23,6 +23,12 @@ public class GameScreen extends ScreenAdapter {
         shape = new ShapeRenderer();
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
+        rebuildBlocks();
+    }
+
+    public void rebuildBlocks()
+    {
+        blocks.clear();
         int blockWidth = 63;
         int blockHeight = 20;
         for (int y = 3 * Gdx.graphics.getHeight()/4; y < Gdx.graphics.getHeight(); y += blockHeight + 10) {
@@ -37,17 +43,21 @@ public class GameScreen extends ScreenAdapter {
         if (!paused) {
             ScreenUtils.clear(Color.BLACK);
             shape.begin(ShapeRenderer.ShapeType.Filled);
-            ball.update(blocks);
             if (ball.dead()) {
                 game.died();
                 shape.end();
+                ball.reset();
+                rebuildBlocks();
                 return;
             }
             if (blocks.size() == 0) {
                 game.won();
                 shape.end();
+                ball.reset();
+                rebuildBlocks();
                 return;
             }
+            ball.update(blocks);
             paddle.update();
             paddle.draw(shape);
             ball.draw(shape);

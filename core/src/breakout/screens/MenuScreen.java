@@ -30,7 +30,7 @@ public class MenuScreen extends ScreenAdapter {
 
     public boolean buttonPressed(Rectangle rect)
     {
-        if (Gdx.input.isTouched())
+        if (Gdx.input.justTouched())
         {
             //return ((Gdx.input.getX() > rect.getX()) && (Gdx.input.getX() < (rect.getX() + rect.getWidth()))) && ((Gdx.input.getY() > rect.getY()) && (Gdx.input.getY() < (rect.getY() + rect.getHeight())));
             return rect.contains(new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY()));
@@ -45,7 +45,6 @@ public class MenuScreen extends ScreenAdapter {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(playTexture, playButton.x, playButton.y);
         batch.draw(exitTexture, exitButton.x, exitButton.y);
-        batch.end();
         if (buttonPressed(playButton))
         {
             game.gameStarted();
@@ -54,5 +53,6 @@ public class MenuScreen extends ScreenAdapter {
         {
             game.gameClosed();
         }
+        batch.end();
     }
 }

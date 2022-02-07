@@ -16,8 +16,8 @@ public class Breakout extends Game {
 	@Override
 	public void create () {
 		gameScreen = new GameScreen(this);
-		deathScreen = new DeathScreen();
-		winScreen = new WinScreen();
+		deathScreen = new DeathScreen(this);
+		winScreen = new WinScreen(this);
 		menuScreen = new MenuScreen(this);
 		setScreen(menuScreen);
 	}
@@ -30,6 +30,9 @@ public class Breakout extends Game {
 	}
 	public void gameStarted() {
 		setScreen(gameScreen);
+	}
+	public void gameRestarted() {
+		setScreen(menuScreen);
 	}
 	public void gameClosed() {
 		Gdx.app.exit();
