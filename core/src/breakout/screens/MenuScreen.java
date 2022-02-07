@@ -1,9 +1,11 @@
 package breakout.screens;
 
 import breakout.Breakout;
+import breakout.Themes.Theme;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -15,9 +17,12 @@ public class MenuScreen extends ScreenAdapter {
     private final Texture playTexture;
     private final Rectangle exitButton;
     private final Texture exitTexture;
+    private final Rectangle weezerButton;
+    private final Texture weezerTexture;
     private final SpriteBatch batch;
     private final Breakout game;
     private final Music music;
+    Theme theme;
 
     public MenuScreen(Breakout game)
     {
@@ -27,8 +32,11 @@ public class MenuScreen extends ScreenAdapter {
         playTexture = new Texture(Gdx.files.internal("playbutton.png"));
         exitButton = new Rectangle(50, 100, 200, 100);
         exitTexture = new Texture(Gdx.files.internal("exitbutton.png"));
+        weezerButton = new Rectangle(50, 0, 200, 100);
+        weezerTexture = new Texture(Gdx.files.internal("exitbutton.png"));
         music = Gdx.audio.newMusic(Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
         batch = new SpriteBatch();
+        theme = game.getCurrentTheme();
     }
 
     public boolean buttonPressed(Rectangle rect)
@@ -49,6 +57,7 @@ public class MenuScreen extends ScreenAdapter {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(playTexture, playButton.x, playButton.y);
         batch.draw(exitTexture, exitButton.x, exitButton.y);
+        batch.draw(weezerTexture, weezerButton.x, weezerButton.y);
         if (buttonPressed(playButton))
         {
             music.dispose();
@@ -58,6 +67,10 @@ public class MenuScreen extends ScreenAdapter {
         {
             music.dispose();
             game.gameClosed();
+        }
+        if (buttonPressed(weezerButton))
+        {
+            game.enableWeezerMode();
         }
         batch.end();
     }

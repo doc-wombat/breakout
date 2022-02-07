@@ -1,5 +1,6 @@
 package breakout;
 
+import breakout.Themes.Theme;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.Color;
 
@@ -17,24 +18,24 @@ public class Block
     }
 
     //Gets the color of the block based on y location
-    public Color getColor() {
+    public Color getColor(Theme theme) {
         if (this.y < 390) {
-            return Color.GREEN;
+            return theme.getBlockColor4();
         }
         else if (this.y < 420) {
-            return Color.YELLOW;
+            return theme.getBlockColor3();
         }
         else if (this.y < 450) {
-            return Color.ORANGE;
+            return theme.getBlockColor2();
         }
         else if (this.y < 480) {
-            return Color.RED;
+            return theme.getBlockColor1();
         }
         return Color.PURPLE;
 }
 
-    public void draw(ShapeRenderer shape){
-        shape.setColor(getColor());
+    public void draw(ShapeRenderer shape, Theme theme){
+        shape.setColor(getColor(theme));
         shape.rect((int)x, (int)y, (int)length, (int)height);
     }
 

@@ -1,6 +1,7 @@
 package breakout.screens;
 
 import breakout.*;
+import breakout.Themes.Theme;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
@@ -17,12 +18,14 @@ public class GameScreen extends ScreenAdapter {
     ArrayList<Block> blocks = new ArrayList<>();
     private final Breakout game;
     private boolean paused = false;
+    Theme theme;
 
     public GameScreen(Breakout game) {
         this.game = game;
         shape = new ShapeRenderer();
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
+        theme = game.getCurrentTheme();
         rebuildBlocks();
     }
 
@@ -63,7 +66,7 @@ public class GameScreen extends ScreenAdapter {
             ball.draw(shape);
             shape.end();
             shape.begin(ShapeRenderer.ShapeType.Filled);
-            blocks.forEach(block -> block.draw(shape));
+            blocks.forEach(block -> block.draw(shape, game.getCurrentTheme()));
             for (int i = 0; i < blocks.size(); i++) {
                 Block b = blocks.get(i);
                 if (b.blockDestroyed) {

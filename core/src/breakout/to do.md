@@ -29,7 +29,10 @@
 - fix bgm carrying over to game screen
 
 ## graphics:
-- *variable block colors*
+- *variable themes*
+    - music
+    - colors
+    - backgrounds
 - *variable paddle sprites*
 - *add motion to drake gif*
 
