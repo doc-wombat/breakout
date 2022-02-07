@@ -1,6 +1,7 @@
 package breakout;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -35,7 +36,7 @@ public class Paddle
                 x = Gdx.graphics.getWidth() - 100;
             }
         }
-        if (Gdx.input.isKeyPressed(21))
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
         {
             x += -8;
             if (x < 0)
@@ -47,7 +48,7 @@ public class Paddle
                 x = Gdx.graphics.getWidth() - 100;
             }
         }
-        if (Gdx.input.isKeyPressed(22))
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
         {
             x += 8;
             if (x < 0)

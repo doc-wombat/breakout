@@ -2,6 +2,7 @@ package breakout.screens;
 
 import breakout.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -15,6 +16,7 @@ public class GameScreen extends ScreenAdapter {
     Paddle paddle;
     ArrayList<Block> blocks = new ArrayList<>();
     private final Breakout game;
+    private boolean paused = false;
 
     public GameScreen(Breakout game) {
         this.game = game;
@@ -32,33 +34,39 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float dt) {
-        ScreenUtils.clear(Color.BLACK);
-        shape.begin(ShapeRenderer.ShapeType.Filled);
-        ball.update(blocks);
-        if (ball.dead()) {
-            game.died();
-            shape.end();
-            return;
-        }
-        if (blocks.size() == 0) {
-            game.won();
-            shape.end();
-            return;
-        }
-        paddle.update();
-        paddle.draw(shape);
-        ball.draw(shape);
-        shape.end();
-        shape.begin(ShapeRenderer.ShapeType.Filled);
-        blocks.forEach(block -> block.draw(shape));
-        for (int i = 0; i < blocks.size(); i++) {
-            Block b = blocks.get(i);
-            if (b.blockDestroyed) {
-                blocks.remove(b);
-                i--;
+        if (!paused) {
+            ScreenUtils.clear(Color.BLACK);
+            shape.begin(ShapeRenderer.ShapeType.Filled);
+            ball.update(blocks);
+            if (ball.dead()) {
+                game.died();
+                shape.end();
+                return;
             }
+            if (blocks.size() == 0) {
+                game.won();
+                shape.end();
+                return;
+            }
+            paddle.update();
+            paddle.draw(shape);
+            ball.draw(shape);
+            shape.end();
+            shape.begin(ShapeRenderer.ShapeType.Filled);
+            blocks.forEach(block -> block.draw(shape));
+            for (int i = 0; i < blocks.size(); i++) {
+                Block b = blocks.get(i);
+                if (b.blockDestroyed) {
+                    blocks.remove(b);
+                    i--;
+                }
+            }
+            shape.end();
+            ball.checkCollision(paddle, ball);
         }
-        shape.end();
-        ball.checkCollision(paddle, ball);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+        {
+            paused = !paused;
+        }
     }
 }

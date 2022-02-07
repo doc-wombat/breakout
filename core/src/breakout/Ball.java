@@ -10,8 +10,8 @@ public class Ball {
     int x;
     int y;
     int size;
-    int xSpeed;
-    int ySpeed;
+    public int xSpeed;
+    public int ySpeed;
     boolean alive = true;
 
     public Ball(int x, int y, int size, int xSpeed, int ySpeed) {
