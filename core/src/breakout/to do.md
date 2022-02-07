@@ -25,7 +25,8 @@
 - paddle sounds
 - death sound
 - win sound
-- bgm
+- bgm ✔
+- fix bgm carrying over to game screen
 
 ## graphics:
 - *variable block colors*

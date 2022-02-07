@@ -6,6 +6,7 @@ import breakout.screens.MenuScreen;
 import breakout.screens.WinScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 
 public class Breakout extends Game {
 	GameScreen gameScreen;
