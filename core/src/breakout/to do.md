@@ -3,7 +3,7 @@
 ## main class:
 - add colors to the blocks ✔
 - **add score counter/hi score counter**
-- **add a menu**
+- add a menu ✔
 - win screen ✔
 - death screen ✔
 
@@ -14,7 +14,7 @@
 - fix collision ✔
 
 ## paddle: ✔
-- **add variable angles** ✔
+- add variable angles ✔
 - prevent moving offscreen ✔
 - keyboard input ✔
 
@@ -35,6 +35,7 @@
 ## other:
 - make executable
 - change window icon
+- add restart buttons to win and end screen
 
 
 **Bold: Highest priority**
