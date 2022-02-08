@@ -2,14 +2,11 @@ package breakout.Themes;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.audio.Music;
-
 public class Theme {
     Color blockColor1, blockColor2, blockColor3, blockColor4;
-    FileHandle background;
-    Music song;
+    FileHandle background, song;
 
-    public Theme(Color bc1, Color bc2, Color bc3, Color bc4, FileHandle bg, Music s;)
+    public Theme(Color bc1, Color bc2, Color bc3, Color bc4, FileHandle bg, FileHandle s)
     {
         this.blockColor1 = bc1;
         this.blockColor2 = bc2;
@@ -57,5 +54,15 @@ public class Theme {
 
     public FileHandle getBackground() {
         return background;
+    }
+
+    public FileHandle getSong()
+    {
+        return song;
+    }
+
+    public void setSong(FileHandle s)
+    {
+        song = s;
     }
 }

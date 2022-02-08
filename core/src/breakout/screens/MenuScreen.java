@@ -12,7 +12,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class MenuScreen extends ScreenAdapter {
-    private final Texture background;
     private final Rectangle playButton;
     private final Texture playTexture;
     private final Rectangle exitButton;
@@ -27,7 +26,6 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen(Breakout game)
     {
         this.game = game;
-        background = new Texture("menu bg.png");
         playButton = new Rectangle(50, 250, 200, 100);
         playTexture = new Texture(Gdx.files.internal("playbutton.png"));
         exitButton = new Rectangle(50, 100, 200, 100);
@@ -54,7 +52,6 @@ public class MenuScreen extends ScreenAdapter {
     {
         batch.begin();
         music.play();
-        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(playTexture, playButton.x, playButton.y);
         batch.draw(exitTexture, exitButton.x, exitButton.y);
         batch.draw(weezerTexture, weezerButton.x, weezerButton.y);
@@ -70,7 +67,13 @@ public class MenuScreen extends ScreenAdapter {
         }
         if (buttonPressed(weezerButton))
         {
-            game.enableWeezerMode();
+            if (game.getCurrentTheme().getBlockColor1() == Color.RED)
+            {
+                game.enableWeezerMode();
+            }
+            else {
+                game.disableWeezerMode();
+            }
         }
         batch.end();
     }

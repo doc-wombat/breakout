@@ -5,27 +5,38 @@ import breakout.Themes.Theme;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.util.ArrayList;
+
+import static com.badlogic.gdx.Gdx.audio;
 
 public class GameScreen extends ScreenAdapter {
     ShapeRenderer shape;
     Ball ball;
     Paddle paddle;
     ArrayList<Block> blocks = new ArrayList<>();
+    private final SpriteBatch batch;
     private final Breakout game;
     private boolean paused = false;
+    private final Texture bg;
+    Music music;
     Theme theme;
 
     public GameScreen(Breakout game) {
         this.game = game;
+        batch = new SpriteBatch();
         shape = new ShapeRenderer();
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
         theme = game.getCurrentTheme();
+        bg = new Texture(theme.getBackground());
+        music = audio.newMusic(theme.getSong());
         rebuildBlocks();
     }
 
@@ -44,24 +55,31 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float dt) {
         if (!paused) {
+            batch.begin();
             ScreenUtils.clear(Color.BLACK);
             shape.begin(ShapeRenderer.ShapeType.Filled);
+            music.play();
             if (ball.dead()) {
                 game.died();
                 shape.end();
                 ball.reset();
+                music.dispose();
                 rebuildBlocks();
+                batch.end();
                 return;
             }
             if (blocks.size() == 0) {
                 game.won();
                 shape.end();
                 ball.reset();
+                music.dispose();
                 rebuildBlocks();
+                batch.end();
                 return;
             }
             ball.update(blocks);
             paddle.update();
+            batch.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             paddle.draw(shape);
             ball.draw(shape);
             shape.end();
@@ -75,6 +93,7 @@ public class GameScreen extends ScreenAdapter {
                 }
             }
             shape.end();
+            batch.end();
             ball.checkCollision(paddle, ball);
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
