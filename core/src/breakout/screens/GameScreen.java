@@ -24,7 +24,7 @@ public class GameScreen extends ScreenAdapter {
     private final SpriteBatch batch;
     private final Breakout game;
     private boolean paused = false;
-    private final Texture bg;
+    private Texture bg;
     Music music;
     Theme theme;
 
@@ -38,6 +38,12 @@ public class GameScreen extends ScreenAdapter {
         bg = new Texture(theme.getBackground());
         music = audio.newMusic(theme.getSong());
         rebuildBlocks();
+    }
+
+    public void reloadFromTheme() {
+        theme = game.getCurrentTheme();
+        bg = new Texture(theme.getBackground());
+        music = audio.newMusic(theme.getSong());
     }
 
     public void rebuildBlocks()

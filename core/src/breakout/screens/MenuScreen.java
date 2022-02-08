@@ -28,10 +28,10 @@ public class MenuScreen extends ScreenAdapter {
         this.game = game;
         playButton = new Rectangle(50, 250, 200, 100);
         playTexture = new Texture(Gdx.files.internal("playbutton.png"));
-        exitButton = new Rectangle(50, 100, 200, 100);
+        exitButton = new Rectangle(50, 150, 200, 100);
         exitTexture = new Texture(Gdx.files.internal("exitbutton.png"));
-        weezerButton = new Rectangle(50, 0, 200, 100);
-        weezerTexture = new Texture(Gdx.files.internal("exitbutton.png"));
+        weezerButton = new Rectangle(50, 50, 200, 100);
+        weezerTexture = new Texture(Gdx.files.internal("weezerbutton.png"));
         music = Gdx.audio.newMusic(Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
         batch = new SpriteBatch();
         theme = game.getCurrentTheme();

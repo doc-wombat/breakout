@@ -17,6 +17,7 @@ public class Breakout extends Game {
 	Theme theme;
 
 	@Override
+	// put themes here
 	public void create () {
 		theme = new Theme(Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Gdx.files.internal("menu bg.png"), Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
 		gameScreen = new GameScreen(this);
@@ -47,14 +48,14 @@ public class Breakout extends Game {
 	}
 	public void enableWeezerMode() {
 		theme.setBackground(Gdx.files.internal("menu bg.png"));
-		theme.setBlockColor1(new Color(.1953f,.7148f,.9492f,1));
-		theme.setBlockColor2(new Color(.1953f,.7148f,.9492f,1));
-		theme.setBlockColor3(new Color(.1953f,.7148f,.9492f,1));
-		theme.setBlockColor4(new Color(.1953f,.7148f,.9492f,1));
+		theme.setBlockColor1(new Color(0x01B9F7FF));
+		theme.setBlockColor2(new Color(0xB2D821FF));
+		theme.setBlockColor3(new Color(0xF01B37FF));
+		theme.setBlockColor4(new Color(0xF7F7F7FF));
 		theme.setSong(Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
 	}
 	public void disableWeezerMode() {
-		theme.setBackground(Gdx.files.internal("menu bg"));
+		theme.setBackground(Gdx.files.internal("menu bg.png"));
 		theme.setBlockColor1(Color.RED);
 		theme.setBlockColor2(Color.ORANGE);
 		theme.setBlockColor3(Color.YELLOW);

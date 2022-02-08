@@ -26,12 +26,11 @@
 - death sound
 - win sound
 - bgm ✔
-- fix bgm carrying over to game screen
 
 ## graphics:
-- *variable themes*
-    - music
-    - colors
+- **variable themes**
+    - music (partial)
+    - colors (partial)
     - backgrounds
 - *variable paddle sprites*
 - *add motion to drake gif*
@@ -41,7 +40,7 @@
 ## other:
 - make executable
 - change window icon
-- add the restart buttons to win and end screen ✔
+- add the restart buttons to win and end screens ✔
 
 ## bugs:
 - flickering on return to menu screen ✔
