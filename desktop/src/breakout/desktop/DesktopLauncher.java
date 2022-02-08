@@ -8,7 +8,7 @@ import breakout.Breakout;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		//config.addIcon("desktop icon.png", Files.FileType.Internal);
+		config.addIcon("icon.png", Files.FileType.Internal);
 		new LwjglApplication(new Breakout(), config);
 	}
 }

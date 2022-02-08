@@ -18,6 +18,7 @@ public class MenuScreen extends ScreenAdapter {
     private final Texture exitTexture;
     private final Rectangle weezerButton;
     private final Texture weezerTexture;
+    private final Texture background;
     private final SpriteBatch batch;
     private final Breakout game;
     private final Music music;
@@ -33,6 +34,7 @@ public class MenuScreen extends ScreenAdapter {
         weezerButton = new Rectangle(50, 50, 200, 100);
         weezerTexture = new Texture(Gdx.files.internal("weezerbutton.png"));
         music = Gdx.audio.newMusic(Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
+        background = new Texture(Gdx.files.internal("menu bg.png"));
         batch = new SpriteBatch();
         theme = game.getCurrentTheme();
     }
@@ -52,6 +54,7 @@ public class MenuScreen extends ScreenAdapter {
     {
         batch.begin();
         music.play();
+        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(playTexture, playButton.x, playButton.y);
         batch.draw(exitTexture, exitButton.x, exitButton.y);
         batch.draw(weezerTexture, weezerButton.x, weezerButton.y);

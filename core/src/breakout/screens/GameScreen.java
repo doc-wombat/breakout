@@ -7,7 +7,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -24,7 +23,6 @@ public class GameScreen extends ScreenAdapter {
     private final SpriteBatch batch;
     private final Breakout game;
     private boolean paused = false;
-    private Texture bg;
     Music music;
     Theme theme;
 
@@ -35,15 +33,8 @@ public class GameScreen extends ScreenAdapter {
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
         theme = game.getCurrentTheme();
-        bg = new Texture(theme.getBackground());
         music = audio.newMusic(theme.getSong());
         rebuildBlocks();
-    }
-
-    public void reloadFromTheme() {
-        theme = game.getCurrentTheme();
-        bg = new Texture(theme.getBackground());
-        music = audio.newMusic(theme.getSong());
     }
 
     public void rebuildBlocks()
@@ -85,7 +76,6 @@ public class GameScreen extends ScreenAdapter {
             }
             ball.update(blocks);
             paddle.update();
-            batch.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             paddle.draw(shape);
             ball.draw(shape);
             shape.end();

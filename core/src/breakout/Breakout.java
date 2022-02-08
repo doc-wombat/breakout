@@ -14,12 +14,15 @@ public class Breakout extends Game {
 	DeathScreen deathScreen;
 	WinScreen winScreen;
 	MenuScreen menuScreen;
-	Theme theme;
+	Theme defaultTheme, weezerTheme;
+	Theme currentTheme;
 
 	@Override
 	// put themes here
 	public void create () {
-		theme = new Theme(Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Gdx.files.internal("menu bg.png"), Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
+		defaultTheme = new Theme(Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
+		weezerTheme = new Theme(new Color(0x01B9F7FF), new Color(0xB2D821FF), new Color(0xF01B37FF), new Color(0xF7F7F7FF), Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
+		setCurrentTheme(defaultTheme);
 		gameScreen = new GameScreen(this);
 		deathScreen = new DeathScreen(this);
 		winScreen = new WinScreen(this);
@@ -28,7 +31,10 @@ public class Breakout extends Game {
 	}
 
 	public Theme getCurrentTheme(){
-		return theme;
+		return currentTheme;
+	}
+	public void setCurrentTheme(Theme t){
+		currentTheme = t;
 	}
 
 	public void died() {
@@ -47,19 +53,9 @@ public class Breakout extends Game {
 		Gdx.app.exit();
 	}
 	public void enableWeezerMode() {
-		theme.setBackground(Gdx.files.internal("menu bg.png"));
-		theme.setBlockColor1(new Color(0x01B9F7FF));
-		theme.setBlockColor2(new Color(0xB2D821FF));
-		theme.setBlockColor3(new Color(0xF01B37FF));
-		theme.setBlockColor4(new Color(0xF7F7F7FF));
-		theme.setSong(Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
+		setCurrentTheme(weezerTheme);
 	}
 	public void disableWeezerMode() {
-		theme.setBackground(Gdx.files.internal("menu bg.png"));
-		theme.setBlockColor1(Color.RED);
-		theme.setBlockColor2(Color.ORANGE);
-		theme.setBlockColor3(Color.YELLOW);
-		theme.setBlockColor4(Color.GREEN);
-		theme.setSong(Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
+		setCurrentTheme(defaultTheme);
 	}
 }
