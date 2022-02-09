@@ -12,8 +12,9 @@
   - change themes
   - *volume*
 
-## ball: ✔
+## ball: 
 - add a kill on hitting bottom of screen ✔
+- speed up as game goes on
 
 ## block: ✔
 - fix collision ✔
@@ -36,7 +37,7 @@
     - colors ✔
     - *backgrounds*
 - *variable paddle sprites*
-- *add motion to drake gif*
+- add motion to drake gif ✔
 
 
 
