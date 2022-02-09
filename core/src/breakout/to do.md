@@ -7,7 +7,7 @@
 - win screen ✔
 - death screen ✔
 - pause ✔
-- *pause screen*
+- pause screen ✔
 - settings screen
   - change themes
   - *volume*

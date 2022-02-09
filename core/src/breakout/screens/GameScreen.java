@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -21,6 +22,7 @@ public class GameScreen extends ScreenAdapter {
     private final SpriteBatch batch;
     private final Breakout game;
     private boolean paused = false;
+    Texture pause;
     Music music;
     Theme theme;
 
@@ -28,6 +30,7 @@ public class GameScreen extends ScreenAdapter {
         this.game = game;
         batch = new SpriteBatch();
         shape = new ShapeRenderer();
+        pause = new Texture(Gdx.files.internal("PAUSE.png"));
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
         reloadFromTheme();
@@ -93,6 +96,11 @@ public class GameScreen extends ScreenAdapter {
             shape.end();
             batch.end();
             ball.checkCollision(paddle, ball);
+        }
+        else {
+            batch.begin();
+            batch.draw(pause, 22, 0);
+            batch.end();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
         {
