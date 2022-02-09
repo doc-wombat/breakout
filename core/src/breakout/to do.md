@@ -1,13 +1,16 @@
 # to do:
 
-## main class:
+## main stuff
 - add colors to the blocks ✔
 - **add score counter/hi score counter**
 - add a menu ✔
 - win screen ✔
 - death screen ✔
 - pause ✔
-- pause screen
+- *pause screen*
+- settings screen
+  - change themes
+  - *volume*
 
 ## ball: ✔
 - add a kill on hitting bottom of screen ✔
@@ -29,9 +32,9 @@
 
 ## graphics:
 - **variable themes**
-    - music (partial)
-    - colors (partial)
-    - backgrounds
+    - music ✔
+    - colors ✔
+    - *backgrounds*
 - *variable paddle sprites*
 - *add motion to drake gif*
 
@@ -39,7 +42,7 @@
 
 ## other:
 - make executable
-- change window icon
+- change window icon ✔
 - add the restart buttons to win and end screens ✔
 
 ## bugs:

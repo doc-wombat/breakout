@@ -18,11 +18,10 @@ public class Breakout extends Game {
 	Theme currentTheme;
 
 	@Override
-	// put themes here
 	public void create () {
-		defaultTheme = new Theme(Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
+		defaultTheme = new Theme(Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Gdx.files.internal("In Da Club.mp3"));
 		weezerTheme = new Theme(new Color(0x01B9F7FF), new Color(0xB2D821FF), new Color(0xF01B37FF), new Color(0xF7F7F7FF), Gdx.files.internal("Weezer - The Good Life [MIDI].mp3"));
-		setCurrentTheme(defaultTheme);
+		currentTheme = defaultTheme;
 		gameScreen = new GameScreen(this);
 		deathScreen = new DeathScreen(this);
 		winScreen = new WinScreen(this);
@@ -35,6 +34,7 @@ public class Breakout extends Game {
 	}
 	public void setCurrentTheme(Theme t){
 		currentTheme = t;
+		gameScreen.reloadFromTheme();
 	}
 
 	public void died() {

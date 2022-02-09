@@ -10,10 +10,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import java.util.ArrayList;
-
 import static com.badlogic.gdx.Gdx.audio;
+import java.util.ArrayList;
 
 public class GameScreen extends ScreenAdapter {
     ShapeRenderer shape;
@@ -32,9 +30,13 @@ public class GameScreen extends ScreenAdapter {
         shape = new ShapeRenderer();
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
+        reloadFromTheme();
+        rebuildBlocks();
+    }
+
+    public void reloadFromTheme() {
         theme = game.getCurrentTheme();
         music = audio.newMusic(theme.getSong());
-        rebuildBlocks();
     }
 
     public void rebuildBlocks()
