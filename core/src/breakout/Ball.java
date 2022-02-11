@@ -30,7 +30,7 @@ public class Ball {
         blocks.forEach(b -> b.checkCollisionX(this));
 
         y += ySpeed;
-        if (y > (Gdx.graphics.getHeight() - this.size)) {
+        if (y > (Gdx.graphics.getHeight() - this.size) - 20) {
             ySpeed = -ySpeed;
         }
         blocks.forEach(b -> b.checkCollisionY(this));

@@ -8,7 +8,9 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import static com.badlogic.gdx.Gdx.audio;
@@ -22,9 +24,11 @@ public class GameScreen extends ScreenAdapter {
     private final SpriteBatch batch;
     private final Breakout game;
     private boolean paused = false;
+    BitmapFont font;
     Texture pause;
     Music music;
     Theme theme;
+    int score;
 
     public GameScreen(Breakout game) {
         this.game = game;
@@ -33,11 +37,20 @@ public class GameScreen extends ScreenAdapter {
         pause = new Texture(Gdx.files.internal("PAUSE.png"));
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
+        score = 0;
+        FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        param.color = Color.WHITE;
+        param.size = 20;
+        param.minFilter = Texture.TextureFilter.Linear;
+        param.magFilter = Texture.TextureFilter.Linear;
+        font = fontGen.generateFont(param);
         reloadFromTheme();
         rebuildBlocks();
     }
 
     public void reloadFromTheme() {
+        score = 0;
         theme = game.getCurrentTheme();
         music = audio.newMusic(theme.getSong());
     }
@@ -47,17 +60,22 @@ public class GameScreen extends ScreenAdapter {
         blocks.clear();
         int blockWidth = 63;
         int blockHeight = 20;
-        for (int y = 3 * Gdx.graphics.getHeight()/4; y < Gdx.graphics.getHeight(); y += blockHeight + 10) {
+        int value = 1;
+        for (int y = (3 * Gdx.graphics.getHeight()/4) - 20; y < Gdx.graphics.getHeight() - 20; y += blockHeight + 10) {
             for (int x = 0; x < Gdx.graphics.getWidth(); x += blockWidth + 10) {
-                blocks.add(new Block(x, y, blockWidth, blockHeight));
+                blocks.add(new Block(x, y, blockWidth, blockHeight, value));
             }
+            value += 2;
         }
     }
 
     @Override
     public void render(float dt) {
+        batch.begin();
+        batch.end();
+
         if (!paused) {
-            batch.begin();
+
             ScreenUtils.clear(Color.BLACK);
             shape.begin(ShapeRenderer.ShapeType.Filled);
             music.play();
@@ -66,8 +84,8 @@ public class GameScreen extends ScreenAdapter {
                 shape.end();
                 ball.reset();
                 music.dispose();
+                score = 0;
                 rebuildBlocks();
-                batch.end();
                 return;
             }
             if (blocks.size() == 0) {
@@ -75,25 +93,29 @@ public class GameScreen extends ScreenAdapter {
                 shape.end();
                 ball.reset();
                 music.dispose();
+                score = 0;
                 rebuildBlocks();
-                batch.end();
                 return;
             }
             ball.update(blocks);
             paddle.update();
             paddle.draw(shape);
             ball.draw(shape);
-            shape.end();
-            shape.begin(ShapeRenderer.ShapeType.Filled);
             blocks.forEach(block -> block.draw(shape, game.getCurrentTheme()));
             for (int i = 0; i < blocks.size(); i++) {
                 Block b = blocks.get(i);
                 if (b.blockDestroyed) {
+                    score += b.getValue();
                     blocks.remove(b);
                     i--;
                 }
             }
+            game.checkHiScore(score);
             shape.end();
+            batch.begin();
+            batch.setColor(Color.WHITE);
+            font.draw(batch, "Score: " + score, 20, 472);
+            font.draw(batch, "High Score: " + game.getHiScore(), 400, 472);
             batch.end();
             ball.checkCollision(paddle, ball);
         }

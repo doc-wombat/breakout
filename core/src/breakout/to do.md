@@ -2,7 +2,7 @@
 
 ## main stuff
 - add colors to the blocks ✔
-- **add score counter/hi score counter**
+- add score counter/hi score counter ✔
 - add a menu ✔
 - win screen ✔
 - death screen ✔

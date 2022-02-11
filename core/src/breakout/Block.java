@@ -8,27 +8,29 @@ public class Block
 {
     double x, y, length, height;
     public boolean blockDestroyed;
+    int score;
 
-    public Block(int x, int y, int length, int height)
+    public Block(int x, int y, int length, int height, int score)
     {
         this.x = x;
         this.y = y;
         this.length = length;
         this.height = height;
+        this.score = score;
     }
 
     //Gets the color of the block based on y location
     public Color getColor(Theme theme) {
-        if (this.y < 390) {
+        if (this.y < 370) {
             return theme.getBlockColor4();
         }
-        else if (this.y < 420) {
+        else if (this.y < 400) {
             return theme.getBlockColor3();
         }
-        else if (this.y < 450) {
+        else if (this.y < 430) {
             return theme.getBlockColor2();
         }
-        else if (this.y < 480) {
+        else if (this.y < 460) {
             return theme.getBlockColor1();
         }
         return Color.PURPLE;
@@ -37,6 +39,11 @@ public class Block
     public void draw(ShapeRenderer shape, Theme theme){
         shape.setColor(getColor(theme));
         shape.rect((int)x, (int)y, (int)length, (int)height);
+    }
+
+    public int getValue()
+    {
+        return this.score;
     }
 
     public void checkCollisionX(Ball ball)
