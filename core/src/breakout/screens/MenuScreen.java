@@ -15,8 +15,8 @@ public class MenuScreen extends ScreenAdapter {
     private final Texture playTexture;
     private final Rectangle exitButton;
     private final Texture exitTexture;
-    private final Rectangle weezerButton;
-    private final Texture weezerTexture;
+    private final Rectangle settingsButton;
+    private final Texture settingsTexture;
     private final Texture background;
     private final SpriteBatch batch;
     private final Breakout game;
@@ -29,8 +29,8 @@ public class MenuScreen extends ScreenAdapter {
         playTexture = new Texture(Gdx.files.internal("playbutton.png"));
         exitButton = new Rectangle(50, 150, 200, 100);
         exitTexture = new Texture(Gdx.files.internal("exitbutton.png"));
-        weezerButton = new Rectangle(50, 50, 200, 100);
-        weezerTexture = new Texture(Gdx.files.internal("weezerbutton.png"));
+        settingsButton = new Rectangle(50, 50, 200, 100);
+        settingsTexture = new Texture(Gdx.files.internal("settingsbutton.png"));
         background = new Texture(Gdx.files.internal("menu bg.png"));
         batch = new SpriteBatch();
         theme = game.getCurrentTheme();
@@ -53,7 +53,7 @@ public class MenuScreen extends ScreenAdapter {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(playTexture, playButton.x, playButton.y);
         batch.draw(exitTexture, exitButton.x, exitButton.y);
-        batch.draw(weezerTexture, weezerButton.x, weezerButton.y);
+        batch.draw(settingsTexture, settingsButton.x, settingsButton.y);
         if (buttonPressed(playButton))
         {
             game.gameStarted();
@@ -62,15 +62,9 @@ public class MenuScreen extends ScreenAdapter {
         {
             game.gameClosed();
         }
-        if (buttonPressed(weezerButton))
+        if (buttonPressed(settingsButton))
         {
-            if (game.getCurrentTheme().getBlockColor1() == Color.RED)
-            {
-                game.enableWeezerMode();
-            }
-            else {
-                game.disableWeezerMode();
-            }
+            game.settings();
         }
         batch.end();
     }
