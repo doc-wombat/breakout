@@ -1,10 +1,7 @@
 package breakout;
 
 import breakout.Themes.Theme;
-import breakout.screens.DeathScreen;
-import breakout.screens.GameScreen;
-import breakout.screens.MenuScreen;
-import breakout.screens.WinScreen;
+import breakout.screens.*;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -15,6 +12,7 @@ public class Breakout extends Game {
 	DeathScreen deathScreen;
 	WinScreen winScreen;
 	MenuScreen menuScreen;
+	SettingsScreen settingsScreen;
 	Theme defaultTheme, weezerTheme;
 	Theme currentTheme;
 	int hiScore;
@@ -29,6 +27,7 @@ public class Breakout extends Game {
 		deathScreen = new DeathScreen(this);
 		winScreen = new WinScreen(this);
 		menuScreen = new MenuScreen(this);
+		settingsScreen = new SettingsScreen(this);
 		setScreen(menuScreen);
 		hiScore = 0;
 	}
@@ -62,6 +61,9 @@ public class Breakout extends Game {
 	}
 	public void gameRestarted() {
 		setScreen(menuScreen);
+	}
+	public void settings() {
+		setScreen(settingsScreen);
 	}
 	public void gameClosed() {
 		Gdx.app.exit();
