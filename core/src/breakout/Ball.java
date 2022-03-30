@@ -56,6 +56,7 @@ public class Ball {
 
     public void checkCollision(Paddle paddle, Ball ball) {
         if(collidesWith(paddle, ball)){
+            /*
             if (Math.abs((paddle.x + (paddle.length / 2))- ball.x) < 25)
             {
                 ball.ySpeed = 5;
@@ -63,6 +64,19 @@ public class Ball {
             else
             {
                 ball.ySpeed = 3;
+            }
+            */
+            // get distance from the center of the paddle, and invert the
+            // distance so that closer to the center results in more acute
+            // angles. additionally, checks for values that would result
+            // in very slow vertical movement and makes them faster.
+            int distFromPaddleCenter = Math.abs(ball.x - (paddle.x + 50));
+            if (distFromPaddleCenter > 30) {
+                ball.ySpeed = 2;
+            }
+            else
+            {
+                ball.ySpeed =  5 - (distFromPaddleCenter / 10);
             }
         }
     }
