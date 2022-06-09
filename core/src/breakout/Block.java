@@ -11,7 +11,7 @@ public class Block
     double x, y, length, height;
     public boolean blockDestroyed;
     int score;
-    Sound blockBreak;
+    // Sound blockBreak;
 
     public Block(int x, int y, int length, int height, int score)
     {
@@ -20,7 +20,7 @@ public class Block
         this.length = length;
         this.height = height;
         this.score = score;
-        blockBreak = Gdx.audio.newSound(Gdx.files.internal("sfx/270327__littlerobotsoundfactory__hit-00.wav"));
+        // blockBreak = Gdx.audio.newSound(Gdx.files.internal("sfx/270327__littlerobotsoundfactory__hit-00.wav"));
     }
 
     //Gets the color of the block based on y location
@@ -56,8 +56,8 @@ public class Block
         {
             ball.xSpeed = -ball.xSpeed;
             blockDestroyed = true;
-            blockBreak.play(1.0f);
-            blockBreak.dispose();
+            // blockBreak.play(1.0f);
+            // blockBreak.dispose();
         }
     }
 
@@ -67,8 +67,8 @@ public class Block
         {
             ball.ySpeed = - ball.ySpeed;
             blockDestroyed = true;
-            blockBreak.play(1.0f);
-            blockBreak.dispose();
+            // blockBreak.play(1.0f);
+            // blockBreak.dispose();
         }
     }
 

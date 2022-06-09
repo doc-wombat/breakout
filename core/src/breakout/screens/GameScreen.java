@@ -38,7 +38,7 @@ public class GameScreen extends ScreenAdapter {
         ball = new Ball(150, 200, 10, 5, 5);
         paddle = new Paddle(150, 15, 100, 10);
         score = 0;
-        FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("commando.ttf"));
+        FreeTypeFontGenerator fontGen = new FreeTypeFontGenerator(Gdx.files.internal("Roboto-Regular.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
         param.color = Color.WHITE;
         param.size = 20;
@@ -58,11 +58,12 @@ public class GameScreen extends ScreenAdapter {
     public void rebuildBlocks()
     {
         blocks.clear();
-        int blockWidth = 63;
+        int blockWidth;
         int blockHeight = 20;
         int value = 1;
         for (int y = (3 * Gdx.graphics.getHeight()/4) - 20; y < Gdx.graphics.getHeight() - 20; y += blockHeight + 10) {
             for (int x = 0; x < Gdx.graphics.getWidth(); x += blockWidth + 10) {
+                blockWidth = (30 + (int)(Math.random() * ((70 - 30) + 1)));
                 blocks.add(new Block(x, y, blockWidth, blockHeight, value));
             }
             value += 2;

@@ -15,7 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class SettingsScreen extends ScreenAdapter {
-    SelectBox<String> selectBox;
+    SelectBox<String> selectBoxTheme;
+    SelectBox<String> selectBoxBlockSize;
     Skin skin;
     Stage stage;
     Breakout game;
@@ -29,17 +30,24 @@ public class SettingsScreen extends ScreenAdapter {
         batch = new SpriteBatch();
         skin = new Skin(Gdx.files.internal("neon/skin/neon-ui.json"));
 
-        Dialog dialog = new Dialog("Setting",skin);
-        dialog.setSize(300,300);
-        dialog.setPosition(Gdx.graphics.getWidth() / 2.f - 100,Gdx.graphics.getHeight() / 2.f - 100);
+        Dialog theme = new Dialog("Theme",skin);
+        theme.setSize(300,300);
+        theme.setPosition(Gdx.graphics.getWidth() / 2.f - 100,Gdx.graphics.getHeight() / 2.f - 100);
 
-        selectBox = new SelectBox<>(skin);
-        selectBox.setItems("Default", "Weezer");
+        Dialog size = new Dialog("Block Size",skin);
+        size.setSize(100,100);
+        size.setPosition(Gdx.graphics.getWidth() / 2.f - 100,Gdx.graphics.getHeight() / 2.f - 300);
 
-        selectBox.addListener(new ChangeListener() {
+        selectBoxTheme = new SelectBox<>(skin);
+        selectBoxTheme.setItems("Default", "Weezer");
+
+        selectBoxBlockSize = new SelectBox<>(skin);
+        selectBoxBlockSize.setItems("Fixed, Variable");
+
+        selectBoxTheme.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                switch (selectBox.getSelectedIndex()) {
+                switch (selectBoxTheme.getSelectedIndex()) {
 
                     case 0 -> game.disableWeezerMode();
                     case 1 -> game.enableWeezerMode();
@@ -47,8 +55,8 @@ public class SettingsScreen extends ScreenAdapter {
             }
         });
 
-        dialog.getContentTable().defaults().pad(10);
-        dialog.getContentTable().add(selectBox);
+        theme.getContentTable().defaults().pad(10);
+        theme.getContentTable().add(selectBoxTheme);
 
         exitButton = new Rectangle(50, 150, 200, 100);
         exitTexture = new Texture(Gdx.files.internal("exitbutton.png"));
@@ -56,7 +64,7 @@ public class SettingsScreen extends ScreenAdapter {
         bg = new Texture(Gdx.files.internal("menu bg.png"));
 
         stage = new Stage();
-        stage.addActor(dialog);
+        stage.addActor(theme);
 
         Gdx.input.setInputProcessor(stage);
     }
